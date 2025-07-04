@@ -1,0 +1,107 @@
+[gd_scene load_steps=9 format=3 uid="uid://cm5lrd6k07hgc"]
+
+[ext_resource type="PackedScene" uid="uid://bj7mm7s8vexxl" path="res://scenes/GameManager.tscn" id="1_78awf"]
+[ext_resource type="PackedScene" uid="uid://ckapumk6vbmfe" path="res://scenes/Character.tscn" id="1_ibkli"]
+[ext_resource type="PackedScene" uid="uid://bg7p0dwepy0ml" path="res://scenes/Killzone.tscn" id="2_qbsmt"]
+[ext_resource type="Texture2D" uid="uid://d4jx5nrregvg2" path="res://assets/PC Computer - Age of Empires - Units.png" id="3_cpr0p"]
+
+[sub_resource type="GDScript" id="GDScript_ve7bo"]
+script/source = "extends Node2D
+
+func _init():
+	# This function is called when the node is added to the scene.
+	print(\"Node2D initialized\");
+	
+"
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cpr0p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78awf"]
+atlas = ExtResource("3_cpr0p")
+region = Rect2(166, 166, 50, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s0nni"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78awf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Game" type="Node2D"]
+position = Vector2(1, 1)
+script = SubResource("GDScript_ve7bo")
+
+[node name="GameManager" parent="." instance=ExtResource("1_78awf")]
+unique_name_in_owner = true
+
+[node name="Timer" type="Timer" parent="GameManager"]
+
+[node name="LifeLabel" type="Label" parent="GameManager"]
+offset_left = -467.0
+offset_top = -295.0
+offset_right = -427.0
+offset_bottom = -272.0
+text = "<Life>"
+
+[node name="CoinLabel" type="Label" parent="GameManager"]
+offset_left = -325.0
+offset_top = -296.0
+offset_right = -272.0
+offset_bottom = -273.0
+text = "<Coin>"
+
+[node name="MessageLabel" type="Label" parent="GameManager"]
+offset_left = -66.0
+offset_top = -176.0
+offset_right = 70.0
+offset_bottom = -142.0
+theme_override_font_sizes/font_size = 24
+text = "<Message>"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Killzone" parent="." instance=ExtResource("2_qbsmt")]
+position = Vector2(-466, -69)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_cpr0p")
+debug_color = Color(1, 0, 0, 0.392157)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Killzone"]
+position = Vector2(0, -85)
+sprite_frames = SubResource("SpriteFrames_s0nni")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Killzone"]
+position = Vector2(0, 99)
+sprite_frames = SubResource("SpriteFrames_s0nni")
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Character" parent="Enemies" instance=ExtResource("1_ibkli")]
+light_mask = 2
+position = Vector2(-57, -48)
+
+[node name="Character2" parent="Enemies" instance=ExtResource("1_ibkli")]
+light_mask = 2
+position = Vector2(77, -95)
+
+[node name="Character3" parent="Enemies" instance=ExtResource("1_ibkli")]
+light_mask = 2
+position = Vector2(116, -29)
+
+[node name="Character4" parent="Enemies" instance=ExtResource("1_ibkli")]
+light_mask = 2
+position = Vector2(232, -80)
+
+[node name="Character5" parent="Enemies" instance=ExtResource("1_ibkli")]
+light_mask = 2
+position = Vector2(341, -96)
+
+[connection signal="timeout" from="GameManager/Timer" to="GameManager" method="_on_timer_timeout"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bw8jef84g24m0"]
+
+[ext_resource type="Script" uid="uid://cubc3gn6ujwig" path="res://scripts/TowerSlot.gd" id="1_3gvst"]
+[ext_resource type="Texture2D" uid="uid://cht3ej7t0ccm" path="res://assets/ConstructionArea.png" id="1_ntkrp"]
+
+[node name="TowerSlot" type="Sprite2D"]
+texture = ExtResource("1_ntkrp")
+script = ExtResource("1_3gvst")

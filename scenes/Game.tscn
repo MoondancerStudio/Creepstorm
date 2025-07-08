@@ -89,6 +89,14 @@ sprite_frames = SubResource("SpriteFrames_s0nni")
 position = Vector2(-192, -175)
 scale = Vector2(0.5, 0.542)
 
+[node name="TowerSlot2" parent="Towers" instance=ExtResource("5_s0nni")]
+position = Vector2(-293, 34)
+scale = Vector2(0.5, 0.542)
+
+[node name="TowerSlot3" parent="Towers" instance=ExtResource("5_s0nni")]
+position = Vector2(-49, 46)
+scale = Vector2(0.5, 0.542)
+
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Character" parent="Enemies" instance=ExtResource("1_ibkli")]

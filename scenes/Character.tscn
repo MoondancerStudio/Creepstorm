@@ -29,5 +29,5 @@ sprite_frames = SubResource("SpriteFrames_apuoc")
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(1, 1.00977)
+scale = Vector2(1.24, 1.28977)
 shape = SubResource("CircleShape2D_rguqb")

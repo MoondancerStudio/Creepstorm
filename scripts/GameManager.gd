@@ -1,3 +1,4 @@
+class_name GameManager
 extends Node
 
 var lives = 5
@@ -21,6 +22,13 @@ func loose_life() -> void:
 	
 func get_coin() -> void:
 	coins += 1
+	renderCoins()
+	
+func reward(coin: int) -> void:
+	coins += coin
+	renderCoins()
+
+func renderCoins() -> void:
 	coinLabel.text = "Coins: %d" % coins
 
 func game_over() -> void:

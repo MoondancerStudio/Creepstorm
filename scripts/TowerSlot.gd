@@ -15,3 +15,10 @@ func buildTower() -> void:
 	texture = newTexture
 	hasTower = true
 	print("Tower has been built")
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is Character:
+		var character := body as Character
+		character.damage(1)
+	

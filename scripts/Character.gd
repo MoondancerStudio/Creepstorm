@@ -2,13 +2,13 @@ class_name Character
 extends CharacterBody2D
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var game: GameManager = %GameManager
+var game: GameManager
 
-var speed: int = 60
-var direction: int = -1
+@export var speed: int = 60
+@export var direction: int = -1
 
-var health: int = 1
-var reward: int = 1
+@export var health: int = 1
+@export var reward: int = 1
 
 func _process(delta: float) -> void:
 	flip()

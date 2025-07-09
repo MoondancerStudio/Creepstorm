@@ -7,11 +7,14 @@ feature a variety of towers, creeps, and a simple wave system.
 
 ## Features
 
-- Creep spawning and movement (/)
-- Life mechanics (/)
-- Tower placing and building (/)
-- Area damage tower (lavaburst) (/)
-- Building cost
+- Creep spawning and movement ✔️
+- Life mechanics ✔️
+- Tower placing and building ✔️
+- Area damage tower (lavaburst) ✔️
+- Building cost ✔️
+- Spawn enemies ✔️
+- Animate tower action ✔️
+- Enemy follows path
 - Wave system
 - Repetitive damage in area
 - Single target tower (archer)

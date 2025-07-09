@@ -23,12 +23,13 @@ texture = ExtResource("1_ntkrp")
 script = ExtResource("1_3gvst")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = SubResource("GradientTexture2D_nak4o")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_ntkrp")
-debug_color = Color(0.06912, 0.597299, 0.703752, 0.42)
+debug_color = Color(0.231153, 0.584582, 0.700387, 0.42)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

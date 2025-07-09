@@ -5,9 +5,11 @@ extends Node2D
 @export var spawn_max_time: float = 3
 @export var spawn_y_variance: int = 50
 
+
 func _on_timer_timeout() -> void:
 	spawn()
 	$Timer.wait_time = randf_range(spawn_min_time, spawn_max_time)
+
 
 func spawn() -> void:
 	var enemy = enemy_preload.instantiate()

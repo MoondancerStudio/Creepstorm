@@ -2,7 +2,7 @@ class_name GameManager
 extends Node
 
 var lives = 5
-var coins = 0
+var coins = 2
 
 @onready var lifeLabel = $LifeLabel
 @onready var coinLabel = $CoinLabel
@@ -22,6 +22,10 @@ func loose_life() -> void:
 	
 func get_coin() -> void:
 	coins += 1
+	renderCoins()
+	
+func spendCoin(value: int) -> void:
+	coins -= value
 	renderCoins()
 	
 func reward(coin: int) -> void:

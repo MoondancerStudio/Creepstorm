@@ -27,10 +27,14 @@ func buildTower() -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Character and hasTower:
-
 		var character := body as Character
 		animateDamage()
 		character.damage(damage)
+	if body is Hurtbox and hasTower:
+		print("Hurtbox!")
+		var hurtbox := body as Hurtbox
+		animateDamage()
+		hurtbox.takeDamage(damage)
 
 
 func animateDamage():

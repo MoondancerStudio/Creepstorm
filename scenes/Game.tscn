@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://cm5lrd6k07hgc"]
+[gd_scene load_steps=14 format=3 uid="uid://cm5lrd6k07hgc"]
 
 [ext_resource type="PackedScene" uid="uid://bj7mm7s8vexxl" path="res://scenes/GameManager.tscn" id="1_78awf"]
 [ext_resource type="PackedScene" uid="uid://bg7p0dwepy0ml" path="res://scenes/Killzone.tscn" id="2_qbsmt"]
 [ext_resource type="Texture2D" uid="uid://d4jx5nrregvg2" path="res://assets/PC Computer - Age of Empires - Units.png" id="3_cpr0p"]
 [ext_resource type="PackedScene" uid="uid://bw8jef84g24m0" path="res://scenes/TowerSlot.tscn" id="5_s0nni"]
 [ext_resource type="PackedScene" uid="uid://bw1jnqb3lq25r" path="res://scenes/Spawner.tscn" id="6_aug50"]
+[ext_resource type="PackedScene" uid="uid://di4t15h17god" path="res://scenes/Components/HealthComponent.tscn" id="7_400sg"]
+[ext_resource type="PackedScene" uid="uid://cvo5eitns4266" path="res://scenes/PathedObject.tscn" id="7_kiw3p"]
+[ext_resource type="PackedScene" uid="uid://dff07g3tcycd6" path="res://scenes/Components/HurtboxComponent.tscn" id="8_g4kob"]
 
 [sub_resource type="GDScript" id="GDScript_ve7bo"]
 script/source = "extends Node2D
@@ -31,6 +34,12 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="Curve2D" id="Curve2D_s0nni"]
+_data = {
+"points": PackedVector2Array(-13.8973, -10.8183, 13.8973, 10.8183, 149, 85, 40.0733, -7.45742, -40.0733, 7.45742, -114, -39, 61.4712, 30.4251, -61.4712, -30.4251, -255, -74, 27.9415, 42.8436, -27.9415, -42.8436, -315, -196, 49.0909, 20.9091, -49.0909, -20.9091, -391, -265, 0, 0, 0, 0, -501, -255, 40, -17.2727, -40, 17.2727, -589, -199, 0, 0, 0, 0, -683, -204, 61.8182, -4.54545, -61.8182, 4.54545, -766, -243, 0, 0, 0, 0, -867, -219, 47.2727, 10, -47.2727, -10, -1070, -185)
+}
+point_count = 11
 
 [node name="Game" type="Node2D"]
 position = Vector2(1, 1)
@@ -86,7 +95,7 @@ sprite_frames = SubResource("SpriteFrames_s0nni")
 [node name="Towers" type="Node" parent="."]
 
 [node name="TowerSlot" parent="Towers" instance=ExtResource("5_s0nni")]
-position = Vector2(-192, -175)
+position = Vector2(-191, -166)
 scale = Vector2(0.5, 0.542)
 
 [node name="TowerSlot2" parent="Towers" instance=ExtResource("5_s0nni")]
@@ -99,5 +108,25 @@ scale = Vector2(0.5, 0.542)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("6_aug50")]
 position = Vector2(437, -87)
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(462, 141)
+curve = SubResource("Curve2D_s0nni")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(149, 85)
+rotation = -2.76221
+rotates = false
+
+[node name="PathedObject" parent="Path2D/PathFollow2D" instance=ExtResource("7_kiw3p")]
+position = Vector2(-8.36005, 3.33311)
+rotation = 2.76221
+
+[node name="HealthComponent" parent="Path2D/PathFollow2D/PathedObject" instance=ExtResource("7_400sg")]
+
+[node name="HurtboxComponent" parent="Path2D/PathFollow2D/PathedObject" node_paths=PackedStringArray("healthComponent") instance=ExtResource("8_g4kob")]
+healthComponent = NodePath("../HealthComponent")
+
+[node name="Bench" type="Node" parent="."]
 
 [connection signal="timeout" from="GameManager/Timer" to="GameManager" method="_on_timer_timeout"]
